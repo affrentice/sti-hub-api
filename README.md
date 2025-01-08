@@ -33,19 +33,14 @@ This microservice focuses on connecting entrepreneurs with essential resources a
 ##### Key Features:
 - Matchmaking: Connects entrepreneurs with suitable investors and partners.
 - Deal Room: Facilitates negotiations and deal-making processes.
-- Content Sharing and Public Profile: Allows users to share content and showcase their profiles publicly.
-- Research Publication and Access: Provides access to research publications relevant to entrepreneurs.
-- Investor Directory: A searchable database of potential investors.
-- Financial Institution Directory: Lists financial institutions that can support entrepreneurs.
-- BDS Provider Directory: Directory of business development service providers.
-- Grants Opportunities: Information on available grants for entrepreneurs.
+- Messaging and Communication: Tools for discussions, negotiations, and support.
 
 #### 2. Project Management
 
 This microservice enhances collaboration among stakeholders through effective communication and project management tools.
 
 ##### Key Features:
-- Messaging and Communication: Tools for discussions, negotiations, and support.
+
 - Performance Monitoring and Analytics: Provides insights into project performance metrics.
 - Project Management and Executive Decision Support: Tools to assist in project planning and decision-making.
 
@@ -56,6 +51,9 @@ This microservice is pivotal in providing entrepreneurs with access to learning 
 ##### Key Features:
 - Access to a variety of learning resources tailored for entrepreneurs.
 - Tools for skill enhancement through courses and workshops.
+- Event Management
+- Grants Opportunities: Information on available grants for entrepreneurs.
+- Research Publication and Access: Provides access to research publications relevant to entrepreneurs.
 
 #### 4. User Registration
 
@@ -63,6 +61,10 @@ This microservice handles user registration and account management functionaliti
 
 ##### Key Features:
 - User Registration and Account Management: Allows users to create accounts, manage profiles, and maintain security.
+- Investor Directory: A searchable database of potential investors.
+- Financial Institution Directory: Lists financial institutions that can support entrepreneurs.
+- BDS Provider Directory: Directory of business development service providers.
+- Content Sharing and Public Profile: Allows users to share content and showcase their profiles publicly.
 
 ## Infrastructure
 
