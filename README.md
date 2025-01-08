@@ -34,6 +34,7 @@ This microservice focuses on connecting entrepreneurs with essential resources a
 - Matchmaking: Connects entrepreneurs with suitable investors and partners.
 - Deal Room: Facilitates negotiations and deal-making processes.
 - Messaging and Communication: Tools for discussions, negotiations, and support.
+- Event Management
 
 #### 2. Project Management
 
@@ -51,7 +52,6 @@ This microservice is pivotal in providing entrepreneurs with access to learning 
 ##### Key Features:
 - Access to a variety of learning resources tailored for entrepreneurs.
 - Tools for skill enhancement through courses and workshops.
-- Event Management
 - Grants Opportunities: Information on available grants for entrepreneurs.
 - Research Publication and Access: Provides access to research publications relevant to entrepreneurs.
 
