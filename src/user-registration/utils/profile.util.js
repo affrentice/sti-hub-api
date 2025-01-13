@@ -1,4 +1,4 @@
-const { PublicProfileModel } = require("@models/Actor");
+const { PublicProfileModel } = require("@models/User");
 const { HttpError } = require("@utils/shared");
 const httpStatus = require("http-status");
 const constants = require("@config/constants");

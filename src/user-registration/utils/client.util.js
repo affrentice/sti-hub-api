@@ -1,6 +1,6 @@
 const WhitelistedIPModel = require("@models/WhitelistedIP");
 const ClientModel = require("@models/Client");
-const { UserModel } = require("@models/Actor");
+const { UserModel } = require("@models/User");
 const httpStatus = require("http-status");
 const mongoose = require("mongoose").set("debug", true);
 const { logObject, logText, HttpError } = require("@utils/shared");

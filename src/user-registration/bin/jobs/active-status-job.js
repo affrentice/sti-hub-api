@@ -1,5 +1,5 @@
 const cron = require("node-cron");
-const { UserModel } = require("@models/Actor");
+const { UserModel } = require("@models/User");
 const constants = require("@config/constants");
 const inactiveThreshold = constants.INACTIVE_THRESHOLD || 2592000000; // 30 days
 const log4js = require("log4js");
@@ -7,7 +7,6 @@ const logger = log4js.getLogger(
   `${constants.ENVIRONMENT} -- bin/jobs/active-status-job script`
 );
 const { stringify } = require("@utils/common");
-const { logObject, logText, logElement, HttpError } = require("@utils/shared");
 
 const checkStatus = async () => {
   try {

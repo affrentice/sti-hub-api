@@ -1,21 +1,11 @@
 const cron = require("node-cron");
-const { UserModel } = require("@models/Actor");
+const { UserModel } = require("@models/User");
 const constants = require("@config/constants");
 const log4js = require("log4js");
 const logger = log4js.getLogger(
   `${constants.ENVIRONMENT} -- bin/jobs/incomplete-profile-job`
 );
-const { logObject, logText, logElement, HttpError } = require("@utils/shared");
-const {
-  mailer,
-  stringify,
-  date,
-  msgs,
-  emailTemplates,
-  generateFilter,
-  winstonLogger,
-  responseHandler,
-} = require("@utils/common");
+const { mailer, stringify } = require("@utils/common");
 
 const checkStatus = async () => {
   try {

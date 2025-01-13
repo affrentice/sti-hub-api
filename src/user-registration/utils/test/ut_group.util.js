@@ -3,10 +3,10 @@ const chai = require("chai");
 const { expect } = chai;
 const sinon = require("sinon");
 const httpStatus = require("http-status");
-const createGroup = require("@utils/create-group");
+const createGroup = require("@utils/group.util");
 const GroupModel = require("@models/Group");
-const UserModel = require("@models/User");
-const generateFilter = require("@utils/generate-filter");
+const { UserModel } = require("@models/User");
+const { generateFilter } = require("@utils/common");
 
 describe("createGroup Module", () => {
   describe("removeUniqueConstraint", () => {

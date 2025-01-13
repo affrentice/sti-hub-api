@@ -1,4 +1,4 @@
-const { UserModel } = require("@models/Actor");
+const { UserModel } = require("@models/User");
 const { HttpError } = require("@utils/shared");
 const { mailer } = require("@utils/common");
 const httpStatus = require("http-status");
