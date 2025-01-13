@@ -10,9 +10,7 @@ const constants = require("@config/constants");
 const ObjectId = mongoose.Types.ObjectId;
 const crypto = require("crypto");
 const log4js = require("log4js");
-const logger = log4js.getLogger(
-  `${constants.ENVIRONMENT} -- control-access-util`
-);
+const logger = log4js.getLogger(`${constants.ENVIRONMENT} -- client-util`);
 
 const generateClientSecret = (length) => {
   if (length % 2 !== 0) {
