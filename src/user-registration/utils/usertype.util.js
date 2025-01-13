@@ -1,39 +1,9 @@
-const BlacklistedIPModel = require("@models/BlacklistedIP");
-const BlacklistedIPPrefixModel = require("@models/BlacklistedIPPrefix");
-const IPPrefixModel = require("@models/IPPrefix");
-const UnknownIPModel = require("@models/UnknownIP");
-const WhitelistedIPModel = require("@models/WhitelistedIP");
-const AccessTokenModel = require("@models/AccessToken");
-const { UserModel } = require("@models/Actor");
-const RoleModel = require("@models/Role");
-const GroupModel = require("@models/Group");
 const httpStatus = require("http-status");
-const mongoose = require("mongoose").set("debug", true);
 const { logObject, logText, HttpError } = require("@utils/shared");
-const { mailer, stringify, generateFilter } = require("@utils/common");
 const isEmpty = require("is-empty");
 const constants = require("@config/constants");
-const moment = require("moment-timezone");
-const ObjectId = mongoose.Types.ObjectId;
-const crypto = require("crypto");
 const log4js = require("log4js");
-const logger = log4js.getLogger(
-  `${constants.ENVIRONMENT} -- control-access-util`
-);
-const async = require("async");
-const { Kafka } = require("kafkajs");
-const kafka = new Kafka({
-  clientId: constants.KAFKA_CLIENT_ID,
-  brokers: constants.KAFKA_BOOTSTRAP_SERVERS,
-});
-
-const getDay = () => {
-  const now = new Date();
-  const year = now.getFullYear();
-  const month = String(now.getMonth() + 1).padStart(2, "0");
-  const day = String(now.getDate()).padStart(2, "0");
-  return `${year}-${month}-${day}`;
-};
+const logger = log4js.getLogger(`${constants.ENVIRONMENT} -- user-type-util`);
 
 const type = {
   assignUserType: async (request, next) => {

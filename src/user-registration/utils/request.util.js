@@ -1,4 +1,4 @@
-const { UserModel } = require("@models/Actor");
+const { UserModel } = require("@models/User");
 const AccessRequestModel = require("@models/AccessRequest");
 const GroupModel = require("@models/Group");
 const { logObject, HttpError } = require("@utils/shared");

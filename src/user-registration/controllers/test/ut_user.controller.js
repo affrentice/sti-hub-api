@@ -8,7 +8,7 @@ const tokenUtil = require("@utils/token.util");
 const userController = require("@controllers/user.controller");
 chai.use(require("sinon-chai"));
 const { validationResult } = require("express-validator");
-const { UserModel } = require("@models/Actor");
+const { UserModel } = require("@models/User");
 
 describe("createUserController", () => {
   describe("listStatistics", () => {

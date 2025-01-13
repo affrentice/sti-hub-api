@@ -3,16 +3,13 @@ const chai = require("chai");
 const expect = chai.expect;
 const sinon = require("sinon");
 const bcrypt = require("bcrypt");
-// const generateFilter = require("@utils/generate-filter");
 const mailer = require("@utils/mailer");
 const redis = require("redis");
 const moment = require("moment-timezone");
-const { ObjectId } = require("mongoose").Types;
-const createUser = require("@utils/user.util");
+const { UserModel } = require("@utils/user.util");
 const mailchimp = require("@config/mailchimp");
 const crypto = require("crypto");
 const admin = require("firebase-admin");
-// const { mockFirebaseAdmin } = require("@firebase/mocks");
 const {
   lookUpFirebaseUser,
   generateSignInWithEmailLink,
