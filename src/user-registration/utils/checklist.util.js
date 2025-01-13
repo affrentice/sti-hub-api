@@ -1,6 +1,6 @@
 const ChecklistModel = require("@models/Checklist");
-const { UserModel } = require("@models/Actor");
-const { logObject, logText, HttpError } = require("@utils/shared");
+const { UserModel } = require("@models/User");
+const { HttpError } = require("@utils/shared");
 const { generateFilter } = require("@utils/common");
 const httpStatus = require("http-status");
 const constants = require("@config/constants");

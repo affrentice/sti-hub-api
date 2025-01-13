@@ -1,10 +1,10 @@
-const { UserModel } = require("@models/Actor");
+const { UserModel } = require("@models/User");
 const AccessRequestModel = require("@models/AccessRequest");
 const PermissionModel = require("@models/Permission");
 const GroupModel = require("@models/Group");
 const httpStatus = require("http-status");
 const mongoose = require("mongoose").set("debug", true);
-const { logObject, logText, logElement, HttpError } = require("@utils/shared");
+const { logObject, HttpError } = require("@utils/shared");
 const { generateFilter } = require("@utils/common");
 const isEmpty = require("is-empty");
 const constants = require("@config/constants");

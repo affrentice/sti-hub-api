@@ -12,17 +12,8 @@ const { getModelByTenant } = require("@config/database");
 const logger = require("log4js").getLogger(
   `${constants.ENVIRONMENT} -- user-model`
 );
-const { logObject, logText, logElement, HttpError } = require("@utils/shared");
-const {
-  mailer,
-  stringify,
-  date,
-  msgs,
-  emailTemplates,
-  generateFilter,
-  winstonLogger,
-  responseHandler,
-} = require("@utils/common");
+const { logObject, HttpError } = require("@utils/shared");
+const { mailer } = require("@utils/common");
 const FIELDS_TO_EXCLUDE = ["password"];
 
 // Base user schema for common fields across all user types
@@ -1215,10 +1206,10 @@ function getUserModel(tenant) {
   const dbTenant = isEmpty(tenant) ? defaultTenant : tenant;
 
   try {
-    let users = mongoose.model("actors");
+    let users = mongoose.model("users");
     return users;
   } catch (error) {
-    let users = getModelByTenant(dbTenant, "actor", baseUserSchema);
+    let users = getModelByTenant(dbTenant, "user", baseUserSchema);
 
     // Array of discriminator configurations
     const discriminators = [

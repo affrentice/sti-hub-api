@@ -4,20 +4,11 @@ const createUserUtil = require("@utils/user.util");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const httpStatus = require("http-status");
 const Validator = require("validator");
-const { UserModel, PublicProfileModel } = require("@models/Actor");
+const { UserModel } = require("@models/User");
 const AccessTokenModel = require("@models/AccessToken");
 const constants = require("@config/constants");
 const { logObject, logText, logElement, HttpError } = require("@utils/shared");
-const {
-  mailer,
-  stringify,
-  date,
-  msgs,
-  emailTemplates,
-  generateFilter,
-  winstonLogger,
-  responseHandler,
-} = require("@utils/common");
+const { mailer, stringify, winstonLogger } = require("@utils/common");
 const { Strategy: JwtStrategy, ExtractJwt } = require("passport-jwt");
 const AuthTokenStrategy = require("passport-auth-token");
 const jwt = require("jsonwebtoken");

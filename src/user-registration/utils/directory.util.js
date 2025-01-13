@@ -1,4 +1,4 @@
-const { UserModel } = require("@models/Actor");
+const { UserModel } = require("@models/User");
 const httpStatus = require("http-status");
 const constants = require("@config/constants");
 const log4js = require("log4js");

@@ -4,7 +4,7 @@ const expect = chai.expect;
 const sinon = require("sinon");
 const chaiAsPromised = require("chai-as-promised");
 const mongoose = require("mongoose");
-const UserModel = require("@models/User");
+const { UserModel } = require("@models/User");
 const httpStatus = require("http-status");
 chai.use(chaiAsPromised);
 

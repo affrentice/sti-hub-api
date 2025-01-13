@@ -1,5 +1,5 @@
 const PermissionModel = require("@models/Permission");
-const { UserModel } = require("@models/Actor");
+const { UserModel } = require("@models/User");
 const RoleModel = require("@models/Role");
 const GroupModel = require("@models/Group");
 const httpStatus = require("http-status");

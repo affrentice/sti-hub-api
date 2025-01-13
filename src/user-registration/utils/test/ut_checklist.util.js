@@ -3,13 +3,12 @@ const chai = require("chai");
 const { expect } = chai;
 const sinon = require("sinon");
 const httpStatus = require("http-status");
-const generateFilter = require("@utils/generate-filter");
+const { generateFilter } = require("@utils/common");
 const ChecklistModel = require("@models/Checklist");
-const ObjectId = require("mongoose").Types.ObjectId;
 const chaiHttp = require("chai-http");
 chai.use(chaiHttp);
-const createChecklisteUtil = require("@utils/create-checklist");
-const UserModel = require("@models/User");
+const createChecklisteUtil = require("@utils/checklist.util");
+const { UserModel } = require("@models/User");
 
 describe("create checklist UTIL", () => {
   describe("list()", () => {

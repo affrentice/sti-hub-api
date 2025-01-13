@@ -4,9 +4,7 @@ const { logText, HttpError } = require("@utils/shared");
 const { generateFilter } = require("@utils/common");
 const constants = require("@config/constants");
 const log4js = require("log4js");
-const logger = log4js.getLogger(
-  `${constants.ENVIRONMENT} -- control-access-util`
-);
+const logger = log4js.getLogger(`${constants.ENVIRONMENT} -- department-util`);
 
 const department = {
   createDepartment: async (request, next) => {
