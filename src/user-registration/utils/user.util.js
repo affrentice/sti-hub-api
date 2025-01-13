@@ -1,19 +1,9 @@
 const { UserModel } = require("@models/Actor");
-const { logObject, logText, logElement, HttpError } = require("@utils/shared");
-const {
-  mailer,
-  stringify,
-  date,
-  msgs,
-  emailTemplates,
-  generateFilter,
-  winstonLogger,
-  responseHandler,
-} = require("@utils/common");
+const { HttpError } = require("@utils/shared");
+const { mailer } = require("@utils/common");
 const httpStatus = require("http-status");
 const constants = require("@config/constants");
 const log4js = require("log4js");
-const { isEmpty } = require("lodash");
 const jwt = require("jsonwebtoken");
 const { OAuth2Client } = require("google-auth-library");
 const logger = log4js.getLogger(`${constants.ENVIRONMENT} -- user-util`);

@@ -1,15 +1,5 @@
-const { UserModel, PublicProfileModel } = require("@models/Actor");
-const { logObject, logText, logElement, HttpError } = require("@utils/shared");
-const {
-  mailer,
-  stringify,
-  date,
-  msgs,
-  emailTemplates,
-  generateFilter,
-  winstonLogger,
-  responseHandler,
-} = require("@utils/common");
+const { PublicProfileModel } = require("@models/Actor");
+const { HttpError } = require("@utils/shared");
 const httpStatus = require("http-status");
 const constants = require("@config/constants");
 const log4js = require("log4js");
