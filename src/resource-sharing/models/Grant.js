@@ -31,7 +31,6 @@ const GrantSchema = new Schema(
       type: String,
       required: [true, "donor_id is required!"],
     },
-    // Cache frequently needed user data
     donor_info: {
       name: String,
       email: String,
