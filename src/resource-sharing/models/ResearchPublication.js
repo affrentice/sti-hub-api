@@ -33,7 +33,6 @@ const ResearchPublicationSchema = new Schema(
       type: String,
       required: [true, "Author ID is required!"],
     },
-    // Cache frequently needed author data
     author_info: {
       name: String,
       institution: String,
