@@ -12,8 +12,8 @@ router.use("/clients", require("@routes/v1/client.routes"));
 router.use("/scopes", require("@routes/v1/scope.routes"));
 router.use("/departments", require("@routes/v1/department.routes"));
 router.use("/groups", require("@routes/v1/group.routes"));
-// router.use("/", require("@routes/v1/user.routes"));
-// router.use("/directories", require("@routes/v1/directory.routes"));
-// router.use("/profiles", require("@routes/v1/profile.routes"));
+router.use("/", require("@routes/v1/user.routes"));
+router.use("/directories", require("@routes/v1/directory.routes"));
+router.use("/profiles", require("@routes/v1/profile.routes"));
 
 module.exports = router;
