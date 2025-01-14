@@ -92,6 +92,86 @@ const department = {
       );
     }
   },
+
+  updateDepartmentStatus: async (request, next) => {
+    try {
+      const { tenant } = {
+        ...request.params,
+        ...request.query,
+        ...request.body,
+      };
+      const department = await DepartmentModel(tenant).findByIdAndUpdate(
+        request.params.department_id,
+        { dep_status: request.body.dep_status },
+        { new: true }
+      );
+    } catch (error) {}
+  },
+
+  addDepartmentUsers: async (request, next) => {
+    try {
+      const { tenant } = {
+        ...request.params,
+        ...request.query,
+        ...request.body,
+      };
+      const department = await DepartmentModel(tenant).findByIdAndUpdate(
+        request.params.department_id,
+        { $addToSet: { dep_users: { $each: request.body.dep_users } } },
+        { new: true }
+      );
+    } catch (error) {}
+  },
+
+  removeDepartmentUsers: async (request, next) => {
+    try {
+      const { tenant } = {
+        ...request.params,
+        ...request.query,
+        ...request.body,
+      };
+      const department = await DepartmentModel(tenant).findByIdAndUpdate(
+        request.params.department_id,
+        { $pullAll: { dep_users: request.body.dep_users } },
+        { new: true }
+      );
+    } catch (error) {}
+  },
+
+  updateDepartmentManager: async (request, next) => {
+    try {
+      const { tenant } = {
+        ...request.params,
+        ...request.query,
+        ...request.body,
+      };
+      const department = await DepartmentModel(tenant).findByIdAndUpdate(
+        request.params.department_id,
+        {
+          dep_manager: request.body.dep_manager,
+          dep_manager_username: request.body.dep_manager_username,
+          dep_manager_firstname: request.body.dep_manager_firstname,
+          dep_manager_lastname: request.body.dep_manager_lastname,
+        },
+        { new: true }
+      );
+    } catch (error) {}
+  },
+
+  getDepartment: async (request, next) => {
+    try {
+      const { tenant } = {
+        ...request.params,
+        ...request.query,
+        ...request.body,
+      };
+      const department = await DepartmentModel(tenant).findById(
+        req.params.department_id
+      );
+      if (!department) {
+      }
+    } catch (error) {}
+  },
 };
 
 module.exports = department;

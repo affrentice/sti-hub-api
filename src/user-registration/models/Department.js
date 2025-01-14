@@ -1,31 +1,21 @@
 const mongoose = require("mongoose");
 const ObjectId = mongoose.Schema.Types.ObjectId;
 const { Schema } = mongoose;
-var uniqueValidator = require("mongoose-unique-validator");
-
+const uniqueValidator = require("mongoose-unique-validator");
 const isEmpty = require("is-empty");
 const httpStatus = require("http-status");
 const constants = require("@config/constants");
 const { getModelByTenant } = require("@config/database");
 const log4js = require("log4js");
-const { logObject, logText, logElement, HttpError } = require("@utils/shared");
-const {
-  mailer,
-  stringify,
-  date,
-  msgs,
-  emailTemplates,
-  generateFilter,
-  winstonLogger,
-  responseHandler,
-} = require("@utils/common");
+const logger = log4js.getLogger(`${constants.ENVIRONMENT} -- department-model`);
+const { logObject, logElement, HttpError } = require("@utils/shared");
 
 const DepartmentSchema = new Schema(
   {
-    dep_network_id: {
+    dep_group_id: {
       type: ObjectId,
-      ref: "network",
-      required: [true, "dep_network_id is required"],
+      ref: "group",
+      required: [true, "dep_group_id is required"],
     },
     dep_parent: { type: ObjectId, ref: "department" },
     dep_title: { type: String, required: [true, "dep_title is required"] },
@@ -62,7 +52,7 @@ DepartmentSchema.plugin(uniqueValidator, {
   message: `{VALUE} should be unique!`,
 });
 
-DepartmentSchema.index({ dep_title: 1, dep_network_id: 1 }, { unique: true });
+DepartmentSchema.index({ dep_title: 1, dep_group_id: 1 }, { unique: true });
 
 DepartmentSchema.methods = {
   toJSON() {
@@ -70,7 +60,7 @@ DepartmentSchema.methods = {
       _id: this._id,
       dep_parent: this.dep_parent,
       dep_title: this.dep_title,
-      dep_network_id: this.dep_network_id,
+      dep_group_id: this.dep_group_id,
       dep_status: this.dep_status,
       dep_manager: this.dep_manager,
       dep_last: this.dep_last,
@@ -165,10 +155,10 @@ DepartmentSchema.statics = {
           as: "dep_children",
         })
         .lookup({
-          from: "networks",
-          localField: "dep_network_id",
+          from: "groups",
+          localField: "dep_group_id",
           foreignField: "_id",
-          as: "network",
+          as: "group",
         })
         .sort({ createdAt: -1 })
         .project({
@@ -186,12 +176,12 @@ DepartmentSchema.statics = {
           createdAt: 1,
           dep_users: "$dep_users",
           dep_children: "$dep_children",
-          network: { $arrayElemAt: ["$network", 0] },
+          group: { $arrayElemAt: ["$group", 0] },
         })
         .project({
-          "network.__v": 0,
-          "network.createdAt": 0,
-          "network.updatedAt": 0,
+          "group.__v": 0,
+          "group.createdAt": 0,
+          "group.updatedAt": 0,
         })
         .project({
           "dep_users.__v": 0,
