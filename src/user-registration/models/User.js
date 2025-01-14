@@ -299,6 +299,10 @@ const publicProfileSchema = new Schema(
   }
 );
 
+// Add compound index for common query patterns
+baseUserSchema.index({ userType: 1, status: 1 });
+baseUserSchema.index({ email: 1, status: 1 });
+
 // Apply plugins and create models
 [baseUserSchema, publicProfileSchema].forEach((schema) => {
   schema.plugin(uniqueValidator, { message: "{VALUE} is already taken." });
@@ -641,6 +645,71 @@ const userStaticMethods = {
       };
     } catch (error) {
       logger.error(`Search users error: ${error.message}`);
+      if (error instanceof HttpError) {
+        return next(error);
+      }
+      return next(
+        new HttpError("Internal Server Error", httpStatus.INTERNAL_SERVER_ERROR)
+      );
+    }
+  },
+
+  async retrieveUsersInBulk(
+    userIds,
+    {
+      fields = null, // Optional field projection
+      lean = true, // Default to lean queries for better performance
+      batchSize = 1000, // For cursor pagination
+    } = {}
+  ) {
+    try {
+      // Validate and prepare userIds
+      const validUserIds = userIds
+        .filter((id) => mongoose.Types.ObjectId.isValid(id))
+        .map((id) => new mongoose.Types.ObjectId(id));
+      // Create base query
+      let query = this.find({
+        _id: { $in: validUserIds },
+      });
+      // Add field projection if specified
+      if (fields) {
+        query = query.select(fields);
+      }
+      // For small result sets (under batchSize)
+      if (validUserIds.length <= batchSize) {
+        // Use lean for better performance when we don't need document methods
+        if (lean) {
+          query = query.lean();
+        }
+        const users = await query.exec();
+        // Maintain the order of requested userIds
+        const userMap = new Map(
+          users.map((user) => [user._id.toString(), user])
+        );
+        return validUserIds.map((id) => userMap.get(id.toString()) || null);
+      }
+      // For large result sets, use cursor-based pagination
+      const users = [];
+      const cursor = query.cursor({ batchSize });
+
+      // Process in batches
+      for (
+        let doc = await cursor.next();
+        doc != null;
+        doc = await cursor.next()
+      ) {
+        users.push(lean ? doc.toObject() : doc);
+
+        // Optional: Add delay between batches to reduce server load
+        if (users.length % batchSize === 0) {
+          await new Promise((resolve) => setTimeout(resolve, 100));
+        }
+      }
+      // Maintain the order of requested userIds
+      const userMap = new Map(users.map((user) => [user._id.toString(), user]));
+      return validUserIds.map((id) => userMap.get(id.toString()) || null);
+    } catch (error) {
+      logger.error(`Bulk user retrieval error: ${error.message}`);
       if (error instanceof HttpError) {
         return next(error);
       }

@@ -656,6 +656,37 @@ const user = {
       );
     }
   },
+  getBulkUsers: async (request, next) => {
+    try {
+      const { userIds, tenant } = {
+        ...request.body,
+        ...request.query,
+        ...request.params,
+      };
+
+      const users = await UserModel(tenant).retrieveUsersInBulk(userIds, {
+        fields: "firstName lastName email userType status profilePicture",
+        lean: true,
+        batchSize: 1000,
+        ...options,
+      });
+      return {
+        success: true,
+        data: users,
+        message: "Users retrieved successfully",
+        status: httpStatus.OK,
+      };
+    } catch (error) {
+      logger.error(`🐛🐛 Internal Server Error ${error.message}`);
+      next(
+        new HttpError(
+          "Internal Server Error",
+          httpStatus.INTERNAL_SERVER_ERROR,
+          { message: error.message }
+        )
+      );
+    }
+  },
 };
 
 module.exports = user;
