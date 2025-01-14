@@ -7,7 +7,13 @@ const Validator = require("validator");
 const { UserModel } = require("@models/User");
 const AccessTokenModel = require("@models/AccessToken");
 const constants = require("@config/constants");
-const { logObject, logText, logElement, HttpError } = require("@utils/shared");
+const {
+  logObject,
+  logText,
+  logElement,
+  HttpError,
+  extractErrorsFromRequest,
+} = require("@utils/shared");
 const { mailer, stringify, winstonLogger } = require("@utils/common");
 const { Strategy: JwtStrategy, ExtractJwt } = require("passport-jwt");
 const AuthTokenStrategy = require("passport-auth-token");
