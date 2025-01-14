@@ -150,6 +150,13 @@ router.post(
   UserController.saveProfileDraft
 );
 
+// Bulk User Retrieval
+router.post(
+  "/admin/bulk/users",
+  userValidations.bulkUsers,
+  UserController.getBulkUsers
+);
+
 // Get Profile Draft
 router.get(
   "/profile/draft",

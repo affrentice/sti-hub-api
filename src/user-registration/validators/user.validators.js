@@ -222,6 +222,18 @@ const userValidations = {
       .notEmpty()
       .withMessage("Verification token cannot be empty"),
   ],
+
+  bulkUsers: [
+    body("userIds")
+      .exists()
+      .withMessage("User IDs array is required")
+      .isArray()
+      .withMessage("User IDs must be an array")
+      .custom((value) => {
+        return value.every((id) => mongoose.Types.ObjectId.isValid(id));
+      })
+      .withMessage("All user IDs must be valid ObjectIds"),
+  ],
 };
 
 module.exports = {
