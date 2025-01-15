@@ -1,14 +1,122 @@
-# User Registration Service..
+# User Registration and Account Management Microservice
 
-This user registration microservice is a crucial component of our application's security infrastructure. It handles user authentication & authorization, ensuring that only authenticated users can access protected resources..
+This microservice implements user registration, account management, and public profile features for the STI Innovation Hub platform. It allows users to register, manage their profiles, and create public profiles, enabling personalized and secure interactions with the platform's features and services.
 
-## Features
+## Table of Contents
 
-- User Registration: This allows new users to create an account by providing their credentials & completing the registration process.
-- User Login: Provides a secure login mechanism for users to authenticate themselves and obtain an access token for subsequent requests.
-- Password Management: Offers password reset and change functionalities to maintain user account security.
-- Token-based Authentication: Utilizes JSON Web Tokens (JWT) for stateless authentication, allowing users to access protected endpoints with a valid token.
-- Role-based Authorization: Implements role-based access control (RBAC) to define granular permissions and restrict certain actions to authorized roles.
-- Token Validation: Verifies the authenticity and validity of tokens during authentication and authorization processes.
-- User Profile Management: Allows users to update their profile information, including personal details and preferences.
-- Security Measures: Implements industry-standard security practices, such as password hashing and encryption, to protect user data and prevent unauthorized access to AirQo Analytics.
+1. [Introduction](#introduction)
+2. [Key Features](#key-features)
+3. [Prerequisites](#prerequisites)
+4. [Installation](#installation)
+5. [Running the Application](#running-the-application)
+6. [API Documentation](#api-documentation)
+7. [Testing](#testing)
+8. [Contributing](#contributing)
+9. [License](#license)
+10. [Acknowledgments](#acknowledgments)
+
+## Introduction
+
+This microservice is part of the STI Innovation Hub ecosystem, focusing on user registration, account management, and public profile creation. It serves as a foundation for other modules, enabling secure and personalized experiences for entrepreneurs, investors, BDS providers, academics, and STI staff.
+
+## Key Features
+
+- User registration and account management
+- Public profile creation and customization
+- Role-based access control
+- Secure authentication and authorization
+- Integration with other STI Innovation Hub services
+
+## Prerequisites
+
+- Node.js (version 14.x or higher)
+- MongoDB (for data storage)
+
+## Installation
+
+1. Clone the repository:
+
+   ```
+   git clone https://github.com/affrentice/sti-hub-api.git
+
+   cd src/user-registration
+   ```
+
+2. Install dependencies:
+
+   ```
+   npm install
+   ```
+
+3. Create a `.env` file in the project root and add your environment variables as shared in `.env.example`
+   ```
+   PORT=3000
+   MONGO_URI=mongodb://localhost:27017/sti_innovation_hub
+   JWT_SECRET=your_jwt_secret
+   ```
+
+## Running the Application
+
+To run the microservice:
+
+1. Ensure you're in the project directory
+2. Run `npm start` to start the application in production mode
+3. The application will start on `http://localhost:3000`
+
+## API Documentation
+
+The API documentation can be found at `/api-docs` after starting the application.
+
+## Testing
+
+To run tests:
+
+```
+npm test
+```
+
+## Contributing
+
+Please feel free to contribute to this project. See the [CONTRIBUTING.md](CONTRIBUTING.md) file for guidelines.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Acknowledgments
+
+- Affrentice Team
+- Node.js Best Practices
+- Express.js Documentation
+
+### Project Structure
+
+```
+user-registration/
+├── bin/
+│   └── index.js
+├── controllers/
+│   ├── profile.controller.js
+│   ├── user.controller.js
+│   └── token.controller.js
+├── models/
+│   ├── User.js
+│   └── Group.js
+├── routes/
+│   ├── v1/
+│   │   ├── directory.routes.js
+│   │   ├── profile.routes.js
+│   ├── v2/
+│   │   ├── directory.routes.js
+├── utils/
+│   └── directory.util.js
+├── config/
+│   └── constants.js
+├── middleware/
+│   └── passport.js
+├── validators/
+│   └── checklist.validators.js
+├── .env
+├── package.json
+└── README.md
+```
