@@ -3,7 +3,7 @@ const router = express.Router();
 const researchController = require("@controllers/research.controller");
 const {
   middlewareUtils,
-  ...researchValidations
+  researchValidations,
 } = require("@validators/research.validators");
 
 // Apply common middleware
@@ -32,6 +32,7 @@ router.post(
 router.put(
   "/:publication_id",
   [
+    ...researchValidations.publicationId,
     ...researchValidations.update,
     ...researchValidations.title,
     ...researchValidations.abstract,

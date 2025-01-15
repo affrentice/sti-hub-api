@@ -38,6 +38,15 @@ const commonValidations = {
 const researchValidations = {
   publicationId: commonValidations.mongoId("publication_id"),
 
+  create: [
+    body("author_id")
+      .exists()
+      .withMessage("Author ID is required")
+      .trim()
+      .notEmpty()
+      .withMessage("Author ID cannot be empty"),
+  ],
+
   title: [
     body("title")
       .exists()
@@ -62,6 +71,8 @@ const researchValidations = {
 
   keywords: [
     body("keywords")
+      .exists()
+      .withMessage("Keywords are required")
       .isArray()
       .withMessage("Keywords must be an array")
       .notEmpty()
@@ -70,6 +81,33 @@ const researchValidations = {
       .trim()
       .notEmpty()
       .withMessage("Keywords cannot be empty"),
+  ],
+
+  institution: [
+    body("institution")
+      .exists()
+      .withMessage("Institution is required")
+      .trim()
+      .notEmpty()
+      .withMessage("Institution cannot be empty"),
+  ],
+
+  researchArea: [
+    body("research_area")
+      .exists()
+      .withMessage("Research area is required")
+      .trim()
+      .notEmpty()
+      .withMessage("Research area cannot be empty"),
+  ],
+
+  documentUrl: [
+    body("document_url")
+      .exists()
+      .withMessage("Document URL is required")
+      .trim()
+      .isURL()
+      .withMessage("Invalid document URL format"),
   ],
 
   status: [
@@ -88,6 +126,46 @@ const researchValidations = {
       .trim()
       .isIn(["public", "private", "institutional"])
       .withMessage("Invalid access level"),
+  ],
+
+  citation: [
+    body("cited_by")
+      .exists()
+      .withMessage("Cited by is required")
+      .trim()
+      .notEmpty()
+      .withMessage("Cited by cannot be empty"),
+  ],
+
+  update: [
+    body("author_info")
+      .optional()
+      .isObject()
+      .withMessage("Author info must be an object"),
+    body("author_info.name")
+      .optional()
+      .trim()
+      .notEmpty()
+      .withMessage("Author name cannot be empty if provided"),
+    body("author_info.email")
+      .optional()
+      .trim()
+      .isEmail()
+      .withMessage("Invalid email format"),
+    body("author_info.institution")
+      .optional()
+      .trim()
+      .notEmpty()
+      .withMessage("Institution cannot be empty if provided"),
+    body("innovation_tags")
+      .optional()
+      .isArray()
+      .withMessage("Innovation tags must be an array"),
+    body("innovation_tags.*")
+      .optional()
+      .trim()
+      .notEmpty()
+      .withMessage("Innovation tags cannot be empty"),
   ],
 
   list: [

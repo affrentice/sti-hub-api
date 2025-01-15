@@ -73,8 +73,8 @@ app.use(
 // Static file serving
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use("/api/v1/users", require("@routes/v1"));
-// app.use("/api/v2/users", require("@routes/v2"));
+app.use("/api/v1/resources", require("@routes/v1"));
+// app.use("/api/v2/resources", require("@routes/v2"));
 
 // default error handling
 app.use((req, res, next) => {

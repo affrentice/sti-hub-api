@@ -3,7 +3,7 @@ const router = express.Router();
 const grantController = require("@controllers/grant.controller");
 const {
   middlewareUtils,
-  ...grantValidations
+  grantValidations,
 } = require("@validators/grant.validators");
 
 // Apply common middleware
@@ -25,6 +25,7 @@ router.post(
     ...grantValidations.eligibilityCriteria,
     ...grantValidations.sector,
     ...grantValidations.applicationProcess,
+    ...grantValidations.documentsRequired,
   ],
   grantController.create
 );
@@ -33,6 +34,7 @@ router.post(
 router.put(
   "/:grant_id",
   [
+    ...grantValidations.grantId,
     ...grantValidations.update,
     ...grantValidations.title,
     ...grantValidations.description,
@@ -41,6 +43,7 @@ router.put(
     ...grantValidations.eligibilityCriteria,
     ...grantValidations.sector,
     ...grantValidations.applicationProcess,
+    ...grantValidations.documentsRequired,
   ],
   grantController.update
 );
