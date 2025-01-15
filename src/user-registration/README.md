@@ -36,15 +36,14 @@ This microservice is part of the STI Innovation Hub ecosystem, focusing on user 
 
 1. Clone the repository:
 
-   ```
+   ```bash
    git clone https://github.com/affrentice/sti-hub-api.git
-
    cd src/user-registration
    ```
 
 2. Install dependencies:
 
-   ```
+   ```bash
    npm install
    ```
 
@@ -71,7 +70,7 @@ The API documentation can be found at `/api-docs` after starting the application
 
 To run tests:
 
-```
+```bash
 npm test
 ```
 
