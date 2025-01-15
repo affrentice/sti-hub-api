@@ -27,45 +27,44 @@ sti-hub-api/
 ### Microservices Description
 
 #### 1. Community Engagement
+```
+This microservice focuses on connecting entrepreneurs with essential resources and partners. It provides systems for matchmaking with investors, financial institutions, and business development service (BDS) providers.
 
-> This microservice focuses on connecting entrepreneurs with essential resources and partners. It provides systems for matchmaking with investors, financial institutions, and business development service (BDS) providers.
-
-> ##### Key Features:
-> - Matchmaking: Connects entrepreneurs with suitable investors and partners.
-> - Deal Room: Facilitates negotiations and deal-making processes.
-> - Messaging and Communication: Tools for discussions, negotiations, and support.
-> - Event Management
-
+Key Features:
+1. Matchmaking: Connects entrepreneurs with suitable investors and partners.
+2. Deal Room: Facilitates negotiations and deal-making processes.
+3. Messaging and Communication: Tools for discussions, negotiations, and support.
+4. Event Management
+```
 #### 2. Project Management
+```
+This microservice enhances collaboration among stakeholders through effective communication and project management tools.
 
-> This microservice enhances collaboration among stakeholders through effective communication and project management tools.
-
-> ##### Key Features:
-
-> - Performance Monitoring and Analytics: Provides insights into project performance metrics.
-> - Project Management and Executive Decision Support: Tools to assist in project planning and decision-making.
-
+Key Features:
+1. Performance Monitoring and Analytics: Provides insights into project performance metrics.
+2. Project Management and Executive Decision Support: Tools to assist in project planning and decision-making.
+```
 #### 3. Resource Sharing
+```
+This microservice is pivotal in providing entrepreneurs with access to learning resources, tools, and courses that enhance their skills.
 
-> This microservice is pivotal in providing entrepreneurs with access to learning resources, tools, and courses that enhance their skills.
-
-> ##### Key Features:
-> - Access to a variety of learning resources tailored for entrepreneurs.
-> - Tools for skill enhancement through courses and workshops.
-> - Grants Opportunities: Information on available grants for entrepreneurs.
-> - Research Publication and Access: Provides access to research publications relevant to entrepreneurs.
-
+Key Features:
+1. Access to a variety of learning resources tailored for entrepreneurs.
+2. Tools for skill enhancement through courses and workshops.
+3. Grants Opportunities: Information on available grants for entrepreneurs.
+4. Research Publication and Access: Provides access to research publications relevant to entrepreneurs.
+```
 #### 4. User Registration
+```
+This microservice handles user registration and account management functionalities.
 
-> This microservice handles user registration and account management functionalities.
-
-> ##### Key Features:
-> - User Registration and Account Management: Allows users to create accounts, manage profiles, and maintain security.
-> - Investor Directory: A searchable database of potential investors.
-> - Financial Institution Directory: Lists financial institutions that can support entrepreneurs.
-> - BDS Provider Directory: Directory of business development service providers.
-> - Content Sharing and Public Profile: Allows users to share content and showcase their profiles publicly.
-
+Key Features:
+1. User Registration and Account Management: Allows users to create accounts, manage profiles, and maintain security.
+2. Investor Directory: A searchable database of potential investors.
+3. Financial Institution Directory: Lists financial institutions that can support entrepreneurs.
+4. BDS Provider Directory: Directory of business development service providers.
+5. Content Sharing and Public Profile: Allows users to share content and showcase their profiles publicly.
+```
 ## Infrastructure
 
 The `infra/` directory contains all infrastructure-related resources necessary for deploying the microservices. This includes configuration files for container orchestration (e.g., Docker Compose), cloud infrastructure scripts, or any other relevant infrastructure as code.
@@ -76,9 +75,9 @@ The `infra/` directory contains all infrastructure-related resources necessary f
 
 Before you begin, ensure you have the following installed:
 ```bash
-- Docker
-- Docker Compose
-- Node.js / Python / Java (depending on the microservice technology stack)
+1. Docker
+2. Docker Compose
+3. Node.js / Python / Java (depending on the microservice technology stack)
 ```
 
 ### Installation
