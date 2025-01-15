@@ -1,10 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const grantApplicationController = require("@controllers/grant-application.controller");
+const grantApplicationController = require("@controllers/grant.application.controller");
 const {
   middlewareUtils,
-  ...grantApplicationValidations
-} = require("@validators/grant-application.validators");
+  grantApplicationValidations,
+} = require("@validators/grant.application.validators");
 
 // Apply common middleware
 router.use(middlewareUtils.headers);
@@ -33,6 +33,7 @@ router.post(
 router.put(
   "/:application_id",
   [
+    ...grantApplicationValidations.applicationId,
     ...grantApplicationValidations.update,
     ...grantApplicationValidations.documents,
   ],
