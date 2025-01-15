@@ -17,14 +17,14 @@ The Resource Sharing microservice is a Node.js and Express-based application tha
 
 1. Clone the repository:
 
-   ```
+   ```bash
    git clone https://github.com/affrentice/sti-hub-api.git
    cd src/resource-sharing
    ```
 
 2. Install dependencies:
 
-   ```
+   ```bash
    npm install
    ```
 
@@ -36,7 +36,8 @@ The Resource Sharing microservice is a Node.js and Express-based application tha
    ```
 
 4. Start the application:
-   ```
+
+   ```bash
    npm start
    ```
 
@@ -56,7 +57,7 @@ The API documentation can be found at `/api-docs` after starting the application
 
 To run tests:
 
-```
+```bash
 npm test
 ```
 
