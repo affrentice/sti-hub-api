@@ -27,7 +27,8 @@ sti-hub-api/
 ### Microservices Description
 
 #### 1. Community Engagement
-```
+
+<pre>
 This microservice focuses on connecting entrepreneurs with essential resources and partners. It provides systems for matchmaking with investors, financial institutions, and business development service (BDS) providers.
 
 Key Features:
@@ -35,17 +36,18 @@ Key Features:
 2. Deal Room: Facilitates negotiations and deal-making processes.
 3. Messaging and Communication: Tools for discussions, negotiations, and support.
 4. Event Management
-```
+</pre>
+
 #### 2. Project Management
-```
+<pre>
 This microservice enhances collaboration among stakeholders through effective communication and project management tools.
 
 Key Features:
 1. Performance Monitoring and Analytics: Provides insights into project performance metrics.
 2. Project Management and Executive Decision Support: Tools to assist in project planning and decision-making.
-```
+</pre>
 #### 3. Resource Sharing
-```
+<pre>
 This microservice is pivotal in providing entrepreneurs with access to learning resources, tools, and courses that enhance their skills.
 
 Key Features:
@@ -53,9 +55,9 @@ Key Features:
 2. Tools for skill enhancement through courses and workshops.
 3. Grants Opportunities: Information on available grants for entrepreneurs.
 4. Research Publication and Access: Provides access to research publications relevant to entrepreneurs.
-```
+</pre>
 #### 4. User Registration
-```
+<pre>
 This microservice handles user registration and account management functionalities.
 
 Key Features:
@@ -64,7 +66,7 @@ Key Features:
 3. Financial Institution Directory: Lists financial institutions that can support entrepreneurs.
 4. BDS Provider Directory: Directory of business development service providers.
 5. Content Sharing and Public Profile: Allows users to share content and showcase their profiles publicly.
-```
+</pre>
 ## Infrastructure
 
 The `infra/` directory contains all infrastructure-related resources necessary for deploying the microservices. This includes configuration files for container orchestration (e.g., Docker Compose), cloud infrastructure scripts, or any other relevant infrastructure as code.
