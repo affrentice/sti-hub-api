@@ -1,5 +1,5 @@
 const httpStatus = require("http-status");
-const grantApplicationUtil = require("@utils/grant-application.util");
+const grantApplicationUtil = require("@utils/grant.application.util");
 const {
   logObject,
   logText,

@@ -1,7 +1,11 @@
 const express = require("express");
 const router = express.Router();
 
-// router.use("/departments", require("@routes/v1/department.routes"));
-// router.use("/profiles", require("@routes/v1/profile.routes"));
+router.use(
+  "/grant-applications",
+  require("@routes/v1/grant.application.routes")
+);
+router.use("/grants", require("@routes/v1/grant.routes"));
+router.use("/research-publications", require("@routes/v1/research.routes"));
 
 module.exports = router;
