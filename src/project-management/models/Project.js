@@ -19,49 +19,6 @@ const {
   responseHandler,
 } = require("@utils/common");
 
-// Analytics Event Schema
-const AnalyticsEventSchema = new Schema(
-  {
-    user_id: {
-      type: String,
-      required: [true, "User ID is required!"],
-      index: true,
-    },
-    event_type: {
-      type: String,
-      required: [true, "Event type is required!"],
-      enum: [
-        "login",
-        "connection_made",
-        "resource_access",
-        "project_update",
-        "message_sent",
-      ],
-      index: true,
-    },
-    timestamp: {
-      type: Date,
-      default: Date.now,
-      index: true,
-    },
-    metadata: {
-      type: Map,
-      of: Schema.Types.Mixed,
-    },
-    platform: {
-      type: String,
-      enum: ["web", "mobile", "api"],
-      required: true,
-    },
-    session_id: {
-      type: String,
-      required: true,
-    },
-  },
-  { timestamps: true }
-);
-
-// Project Schema
 const ProjectSchema = new Schema(
   {
     title: {
@@ -155,54 +112,6 @@ const ProjectSchema = new Schema(
 ProjectSchema.index({ "timeline.start_date": 1, "timeline.end_date": 1 });
 ProjectSchema.index({ "metrics.performance_indicators.timestamp": 1 });
 
-// Analytics Methods
-AnalyticsEventSchema.statics = {
-  async getEngagementMetrics({ startDate, endDate, eventType } = {}, next) {
-    try {
-      const filter = {
-        timestamp: {
-          $gte: startDate,
-          $lte: endDate,
-        },
-      };
-
-      if (eventType) {
-        filter.event_type = eventType;
-      }
-
-      const metrics = await this.aggregate([
-        { $match: filter },
-        {
-          $group: {
-            _id: {
-              eventType: "$event_type",
-              day: {
-                $dateToString: { format: "%Y-%m-%d", date: "$timestamp" },
-              },
-            },
-            count: { $sum: 1 },
-          },
-        },
-        { $sort: { "_id.day": 1 } },
-      ]);
-
-      return {
-        success: true,
-        data: metrics,
-        status: httpStatus.OK,
-      };
-    } catch (error) {
-      next(
-        new HttpError(
-          "Internal Server Error",
-          httpStatus.INTERNAL_SERVER_ERROR,
-          { message: error.message }
-        )
-      );
-    }
-  },
-};
-
 // Project Methods
 ProjectSchema.statics = {
   async list({ skip = 0, limit = 50, filter = {} } = {}, next) {
@@ -259,23 +168,6 @@ ProjectSchema.statics = {
   },
 };
 
-// Model creation with tenant support
-const AnalyticsModel = (tenant) => {
-  const defaultTenant = constants.DEFAULT_TENANT || "sti";
-  const dbTenant = isEmpty(tenant) ? defaultTenant : tenant;
-  try {
-    let analytics = mongoose.model("analytics_events");
-    return analytics;
-  } catch (error) {
-    let analytics = getModelByTenant(
-      dbTenant,
-      "analytics_event",
-      AnalyticsEventSchema
-    );
-    return analytics;
-  }
-};
-
 const ProjectModel = (tenant) => {
   const defaultTenant = constants.DEFAULT_TENANT || "sti";
   const dbTenant = isEmpty(tenant) ? defaultTenant : tenant;
@@ -288,7 +180,4 @@ const ProjectModel = (tenant) => {
   }
 };
 
-module.exports = {
-  AnalyticsModel,
-  ProjectModel,
-};
+module.exports = ProjectModel;
