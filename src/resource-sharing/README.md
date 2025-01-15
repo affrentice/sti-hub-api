@@ -88,10 +88,10 @@ resource-sharing/
 │   └── Publication.js
 ├── routes/
 │   ├── v1/
-│       ├── grant.routes.js
-│       ├── research.routes.js
+│   │   ├── grant.routes.js
+│   │   ├── research.routes.js
 │   ├── v2/
-│       ├── grant.routes.js
+│   │   ├── grant.routes.js
 ├── utils/
 │   └── grant.util.js
 ├── config/
