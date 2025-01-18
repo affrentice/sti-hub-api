@@ -56,7 +56,7 @@
     "express-session": "^1.17.3",
     "express-validation": "^1.0.3",
     "express-validator": "^6.12.1",
-    "firebase-admin": "^11.10.1",
+    "firebase-admin": "^13.0.2",
     "firebase-functions": "^4.2.1",
     "generate-password": "^1.5.1",
     "gstore-node": "^7.2.4",
