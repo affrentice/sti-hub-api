@@ -23,7 +23,13 @@ const users = {
         return;
       }
 
-      const result = await userUtil.createUser(req.body);
+      const request = req;
+      const defaultTenant = constants.DEFAULT_TENANT || "sti";
+      request.query.tenant = isEmpty(req.query.tenant)
+        ? defaultTenant
+        : req.query.tenant;
+
+      const result = await userUtil.register(request, next);
 
       if (isEmpty(result) || res.headersSent) {
         return;
