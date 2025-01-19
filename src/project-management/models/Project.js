@@ -31,6 +31,12 @@ const ProjectSchema = new Schema(
       required: [true, "Entrepreneur ID is required!"],
       index: true,
     },
+    entrepreneur_info: {
+      name: String,
+      email: String,
+      organization: String,
+      last_updated: Date,
+    },
     description: {
       type: String,
       required: [true, "Project description is required!"],
