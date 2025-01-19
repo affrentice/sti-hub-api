@@ -26,6 +26,12 @@ const AnalyticsEventSchema = new Schema(
       required: [true, "User ID is required!"],
       index: true,
     },
+    user_info: {
+      name: String,
+      email: String,
+      organization: String,
+      last_updated: Date,
+    },
     event_type: {
       type: String,
       required: [true, "Event type is required!"],
