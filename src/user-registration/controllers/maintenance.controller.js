@@ -13,7 +13,7 @@ const {
   HttpError,
   extractErrorsFromRequest,
 } = require("@utils/shared");
-const { handleResponse } = require("@utils/common");
+const { responseHandler } = require("@utils/common");
 
 const maintenances = {
   update: async (req, res, next) => {
@@ -30,7 +30,7 @@ const maintenances = {
       if (isEmpty(result) || res.headersSent) {
         return;
       }
-      handleResponse(res, result, "maintenance");
+      responseHandler(res, result, "maintenance");
     } catch (error) {
       logger.error(`🐛🐛 Internal Server Error ${error.message}`);
       next(
@@ -57,7 +57,7 @@ const maintenances = {
       if (isEmpty(result) || res.headersSent) {
         return;
       }
-      handleResponse(res, result, "maintenance");
+      responseHandler(res, result, "maintenance");
     } catch (error) {
       logger.error(`🐛🐛 Internal Server Error ${error.message}`);
       next(
@@ -86,7 +86,7 @@ const maintenances = {
       if (isEmpty(result) || res.headersSent) {
         return;
       }
-      handleResponse(res, result, "maintenance");
+      responseHandler(res, result, "maintenance");
     } catch (error) {
       logger.error(`🐛🐛 Internal Server Error ${error.message}`);
       next(
@@ -115,7 +115,7 @@ const maintenances = {
       if (isEmpty(result) || res.headersSent) {
         return;
       }
-      handleResponse(res, result, "maintenance");
+      responseHandler(res, result, "maintenance");
     } catch (error) {
       logger.error(`🐛🐛 Internal Server Error ${error.message}`);
       next(
