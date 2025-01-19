@@ -1,7 +1,6 @@
 const cron = require("node-cron");
-const GrantApplicationModel = require("@models/GrantApplication");
-const ResearchPublicationModel = require("@models/ResearchPublication");
-const GrantModel = require("@models/Grant");
+const AnalyticsModel = require("@models/Analytics");
+const ProjectModel = require("@models/Project");
 const constants = require("@config/constants");
 const log4js = require("log4js");
 const logger = log4js.getLogger(
@@ -12,35 +11,28 @@ const UserServiceClient = require("@config/userServiceClient");
 
 const userServiceClient = new UserServiceClient();
 const CACHE_THRESHOLD = constants.USER_CACHE_THRESHOLD || 86400000; // 24 hours
-const BATCH_SIZE = 50; // Optimized for bulk API requests
+const BATCH_SIZE = 50;
 
 // Define required fields for each model type
 const MODEL_FIELD_MAPPINGS = {
-  grant: "firstName,lastName,email,userType,status,organization",
-  research: "firstName,lastName,email,institution,status",
-  application: "firstName,lastName,email,organization,status",
+  analytics: "firstName,lastName,email,status",
+  project: "firstName,lastName,email,organization,status",
 };
 
 const syncUserData = async () => {
   try {
     const models = [
       {
-        model: GrantModel("sti"),
-        userField: "donor_id",
-        infoField: "donor_info",
-        type: "grant",
+        model: AnalyticsModel("analytics"),
+        userField: "user_id",
+        infoField: "user_info",
+        type: "analytics",
       },
       {
-        model: ResearchPublicationModel("sti"),
-        userField: "author_id",
-        infoField: "author_info",
-        type: "research",
-      },
-      {
-        model: GrantApplicationModel("sti"),
-        userField: "applicant_id",
-        infoField: "applicant_info",
-        type: "application",
+        model: ProjectModel("projects"),
+        userField: "entrepreneur_id",
+        infoField: "entrepreneur_info",
+        type: "project",
       },
     ];
 
@@ -87,20 +79,24 @@ const syncUserData = async () => {
             .filter((record) => usersMap.has(record[userField]))
             .map((record) => {
               const userData = usersMap.get(record[userField]);
+              const baseUpdate = {
+                name: `${userData.firstName} ${userData.lastName}`,
+                email: userData.email,
+                status: userData.status,
+                last_updated: new Date(),
+              };
+
+              // Add organization field only for projects
+              if (type === "project") {
+                baseUpdate.organization = userData.organization;
+              }
+
               return {
                 updateOne: {
                   filter: { _id: record._id },
                   update: {
                     $set: {
-                      [infoField]: {
-                        name: `${userData.firstName} ${userData.lastName}`,
-                        email: userData.email,
-                        organization:
-                          userData.organization || userData.institution,
-                        userType: userData.userType,
-                        status: userData.status,
-                        last_updated: new Date(),
-                      },
+                      [infoField]: baseUpdate,
                     },
                   },
                 },
@@ -149,7 +145,6 @@ cron.schedule(schedule, syncUserData, {
 // Add manual trigger endpoint for admin use
 const triggerSync = async (req, res) => {
   try {
-    // Run in background to avoid request timeout
     syncUserData().catch((error) =>
       logger.error(`Manual sync failed: ${stringify(error)}`)
     );
