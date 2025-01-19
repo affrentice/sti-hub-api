@@ -1,5 +1,5 @@
 const { UserModel } = require("@models/User");
-const { HttpError } = require("@utils/shared");
+const { HttpError, logObject } = require("@utils/shared");
 const { mailer } = require("@utils/common");
 const httpStatus = require("http-status");
 const constants = require("@config/constants");
@@ -11,11 +11,10 @@ const logger = log4js.getLogger(`${constants.ENVIRONMENT} -- user-util`);
 const user = {
   register: async (request, next) => {
     try {
-      const { registrationData, tenant } = {
-        ...request.body,
+      const { tenant } = {
         ...request.query,
-        ...request.params,
       };
+      const registrationData = request.body;
 
       const responseFromRegister = await UserModel(tenant).register(
         registrationData,
