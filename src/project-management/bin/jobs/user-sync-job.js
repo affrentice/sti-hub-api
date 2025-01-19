@@ -23,13 +23,13 @@ const syncUserData = async () => {
   try {
     const models = [
       {
-        model: AnalyticsModel("analytics"),
+        model: AnalyticsModel("sti"),
         userField: "user_id",
         infoField: "user_info",
         type: "analytics",
       },
       {
-        model: ProjectModel("projects"),
+        model: ProjectModel("sti"),
         userField: "entrepreneur_id",
         infoField: "entrepreneur_info",
         type: "project",
